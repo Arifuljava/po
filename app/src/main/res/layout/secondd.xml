@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/download"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp">
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                >
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        >
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/ic_close"
+                            android:layout_alignParentRight="true"
+                            android:id="@+id/closedialouge__1"
+                            ></ImageView>
+                        <ImageView
+                            android:layout_width="50dp"
+                            android:src="@drawable/ic_baseline_refresh_24"
+                            android:layout_height="50dp"
+                            android:id="@+id/searchagain"
+
+                            android:textAllCaps="false"
+                            android:textSize="16dp"
+                            android:textColor="#1167b1"
+                            android:textAlignment="center"
+                            android:gravity="center_vertical"
+
+                            android:layout_alignParentLeft="true"
+
+                            ></ImageView>
+                    </RelativeLayout>
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp"
+                    >
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            >
+                            <ListView
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginBottom="50dp"
+                                android:layout_marginTop="0dp"
+                                android:id="@+id/list_view"
+                                android:layout_width="match_parent"
+                                android:layout_height="550dp"
+                                ></ListView>
+
+
+
+
+                        </LinearLayout>
+                    </ScrollView>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

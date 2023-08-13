@@ -74,7 +74,7 @@ int REQUEST_ENABLE_BT =1 ;
         Toast.makeText(this, ""+bluetoothLEAvailable, Toast.LENGTH_SHORT).show();
 
         String deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-   startActivity(new Intent(getApplicationContext(),DiscoveriresActivity.class));
+   startActivity(new Intent(getApplicationContext(),MainActivity2.class));
        /*
         PackageManager pm = MainActivity.this.getPackageManager();
         if (pm.hasSystemFeature(PackageManager.FEATURE_PC))
@@ -164,7 +164,7 @@ int REQUEST_ENABLE_BT =1 ;
             String action = intent.getAction();
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                Toast.makeText(MainActivity.this, ""+device.getName()+"\n"+device.getAddress(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, ""+device.getName()+"\n"+device.getAddress(), Toast.LENGTH_SHORT).show();
                 // Do something with the discovered device
             }
         }

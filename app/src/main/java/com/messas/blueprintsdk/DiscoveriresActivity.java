@@ -21,9 +21,12 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -42,19 +45,7 @@ public class DiscoveriresActivity extends AppCompatActivity {
     private Button reloadButton;
     private ListView listView;
 
-    private final BroadcastReceiver discoveryReceiver = new BroadcastReceiver() {
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-
-            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
-                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                if (device != null && device.getName()!=null) {
-                    deviceList.add(device.getName() + "\n" + device.getAddress());
-                    deviceListAdapter.notifyDataSetChanged();
-                }
-            }
-        }
-    };
+    private  BroadcastReceiver discoveryReceiver ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,6 +75,34 @@ public class DiscoveriresActivity extends AppCompatActivity {
                 discoverDevices();
             }
         });
+        discoveryReceiver = new BroadcastReceiver() {
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+
+                if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    if (device != null && device.getName() != null && device.getAddress() != null) {
+                        String deviceInfo = device.getName() + "\n" + device.getAddress();
+                        if (!deviceList.contains(deviceInfo)) {
+                            deviceList.add(deviceInfo);
+                            deviceListAdapter.notifyDataSetChanged();
+                            Toast.makeText(DiscoveriresActivity.this, "New device: " + deviceInfo, Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(DiscoveriresActivity.this, "Duplicate device: " + deviceInfo, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }
+            }
+        };
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = deviceList.get(position);
+                // Add your desired action for the clicked item here
+                // For example, you can start a new activity or show a dialog
+                Toast.makeText(DiscoveriresActivity.this, "Clicked: " + selectedItem, Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // Register the BroadcastReceiver
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
@@ -111,6 +130,8 @@ public class DiscoveriresActivity extends AppCompatActivity {
         deviceListAdapter.notifyDataSetChanged();
 
         bluetoothAdapter.startDiscovery();
+
+
     }
 
     @Override
